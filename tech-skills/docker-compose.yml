@@ -100,6 +100,30 @@ services:
     networks:
       - async-net
 
+  simulator-service:
+    build: ./simulator-service
+    container_name: simulator-service
+    depends_on:
+      - kafka
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - async-net
+
+  pricing-engine-service:
+    build: ./pricing-engine-service
+    container_name: pricing-engine-service
+    depends_on:
+      - kafka
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - async-net
+
 volumes:
   postgres_data:
     driver: local
