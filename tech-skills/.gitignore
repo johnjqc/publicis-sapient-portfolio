@@ -1,0 +1,47 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Gradle wrapper (keep the jar and properties)
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Java
+*.class
+*.tmp
+*.cache
+*.swp
+*.swo
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDE - IntelliJ IDEA
+../.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Test outputs
+test-output/
+reports/
+/.idea/

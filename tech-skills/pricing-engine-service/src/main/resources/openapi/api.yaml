@@ -1,0 +1,120 @@
+openapi: 3.0.3
+
+info:
+  title: Pricing Engine API
+  version: 1.0.0
+  description: |
+    API for querying the latest in-memory price snapshots produced by the Pricing Engine.
+
+servers:
+  - url: http://localhost/
+
+tags:
+  - name: Price Snapshot
+    description: Query current price snapshots.
+
+paths:
+  /prices:
+    get:
+      tags:
+        - Price Snapshot
+      summary: Get all price snapshots
+      description: Returns the latest in-memory snapshot for every tracked symbol.
+      operationId: getAllPriceSnapshots
+      responses:
+        '200':
+          description: Price snapshots successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PriceSnapshotResponse'
+
+  /prices/{symbol}:
+    get:
+      tags:
+        - Price Snapshot
+      summary: Get price snapshot by symbol
+      description: Returns the latest in-memory snapshot for a specific stock symbol.
+      operationId: getPriceSnapshotBySymbol
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          description: Stock symbol (for example AAPL or MSFT).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Price snapshot successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceSnapshotResponse'
+
+        '404':
+          description: No snapshot found for the specified symbol.
+
+components:
+  schemas:
+
+    PriceSnapshotResponse:
+      type: object
+      required:
+        - symbol
+        - currentPrice
+        - averagePrice
+        - changePercent
+        - volatility
+        - tickCount
+        - totalUpdates
+        - lastUpdated
+      properties:
+
+        symbol:
+          type: string
+          description: Stock symbol.
+          example: AAPL
+
+        currentPrice:
+          type: number
+          format: decimal
+          description: Latest calculated market price.
+          example: 201.35
+
+        averagePrice:
+          type: number
+          format: decimal
+          description: Running average price.
+          example: 198.74
+
+        changePercent:
+          type: number
+          format: decimal
+          description: Percentage change from the initial price.
+          example: 1.31
+
+        volatility:
+          type: number
+          format: decimal
+          description: Configured volatility percentage.
+          example: 15.00
+
+        tickCount:
+          type: integer
+          format: int64
+          description: Number of ticks processed since startup.
+          example: 1520
+
+        totalUpdates:
+          type: integer
+          format: int64
+          description: Total number of price updates received.
+          example: 1520
+
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp of the latest price update.
+          example: "2026-01-01T12:35:42Z"

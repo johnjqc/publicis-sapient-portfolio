@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Market Simulator API
+  version: 1.0.0
+
+paths:
+  /api/v1/market-simulator/symbols:
+    get:
+      tags:
+        - Market Simulator
+      summary: Obtener símbolos monitoreados
+      operationId: trackedSymbols
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                trackedSymbols:
+                  value:
+                    - AAPL
+                    - TSLA
+                    - NVDA
+                    - BTCUSD
+
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - timestamp
+        - code
+        - message

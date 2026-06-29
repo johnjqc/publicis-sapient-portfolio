@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: pricing-engine
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    consumer:
+      group-id: pricing-engine-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.investment.*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.investment.pricingengine.infrastructure.messaging.consumer.MarketPriceUpdatedMessage
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+pricing-engine:
+  topics:
+    market-price-updated: market.price.updated
+    price-snapshot-updated: price.snapshot.updated
+  concurrency:
+    consumer-threads: 4          # number of concurrent Kafka listener threads per partition
+  snapshot:
+    interval-ms: 5000            # how often to publish PriceSnapshotUpdated (ms)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,info,metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [correlationId=%X{correlationId}] %-5level %logger{36} - %msg%n"
