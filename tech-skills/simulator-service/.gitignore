@@ -1,7 +1,6 @@
 # Gradle
 .gradle/
 build/
-/out/
 
 # Gradle wrapper (keep the jar and properties)
 !gradle/wrapper/gradle-wrapper.jar
