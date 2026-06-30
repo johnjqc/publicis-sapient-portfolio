@@ -20,6 +20,10 @@ Productivity can be measured from different aspects during the development life 
 
 Productivity can also be measured in terms of the speed of acquiring or transferring knowledge. AI greatly assists engineers in analyzing and understanding projects. When modifying an existing project, a significant amount of time is invested in understanding the context. AI excels at this task by reading and explaining codebases, summarizing architecture, identifying dependencies, and explaining why an implementation works a certain way. This reduces the time an engineer needs to adapt to a new context, understand the system, and allows them to generate value much faster.
 
-During the last year I have used several AI tools to complete tasks in a few hours that previously took days. Based on both my personal experience and what I see across the industry, AI is not longer a trend of something new; it has become a necessity.
+To asnwer the question, are you 1.1x, 1.5x, 2x, 5x more productive?
+
+During the last year I have used several AI tools to complete tasks in a few hours that previously took days. I think productivity should be measured based on consistently achieving the same outcome, rather than measuring the speed of isolated tasks. For example, a few years ago, creating an OpenAPI specification could easily take me around four hours if I had experience in this task. If I wasn't, it could take two days or more, depending on the number of endpoints and the complexity of the API. Today, with AI, the same task usually takes me less than an hour. The biggest improvement is not only that it's faster, but that I can consistently reach that level of speed regardless of the task's initial complexity. That's why I believe AI should be integrated into our engineering processes instead of being treated as an optional tool. It helps teams deliver consistent results and reduces the variability between similar tasks.
+
+Overall, if I had to quantify the impact on my day-to-day work, I would estimate my productivity has increased by around 1.1x.
 
 In conclusion, I believe that the impact of AI on software engineering productivity is already extremely high. It allows us to spend less time on repetitive tasks and focus on activities where human sense generates more value.
