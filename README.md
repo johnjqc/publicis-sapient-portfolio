@@ -61,6 +61,29 @@ The project consists of two independent microservices communicating asynchronous
   - Publishes pricing snapshots
   - Demonstrates lock-free programming using immutable state and Compare-And-Set (CAS)
 
+### Production Readiness
+
+Given additional time, I would incorporate several production-grade capabilities to improve resilience, reliability and observability.
+
+#### Resilience
+
+- **Retry policies** with exponential backoff for Kafka producers and consumers.
+- **Circuit Breakers** (Resilience4j) to protect Kafka producers from cascading failures and to temporarily pause message processing when downstream dependencies become unavailable.
+- **Timeouts** and **Bulkheads** to isolate failures and prevent resource exhaustion.
+
+#### Reliable Messaging
+
+- **Dead Letter Queue (DLQ)** for messages that cannot be processed after multiple retry attempts.
+- **Outbox Pattern** in the Pricing Engine to guarantee atomicity between state changes and event publication, avoiding message loss in case of failures.
+
+#### Observability
+
+- Structured logging with correlation IDs to simplify troubleshooting across services.
+
+#### Persistence
+
+- Replace the in-memory snapshot store with **PostgreSQL**.
+
 ---
 
 ## Writing Skills
